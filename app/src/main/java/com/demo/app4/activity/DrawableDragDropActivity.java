@@ -2,12 +2,10 @@ package com.demo.app4.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
 
 import com.demo.app4.R;
 import com.demo.app4.util.DragAndDropCollisionListener;
+import com.demo.app4.util.DragAndDropTemplate;
 
 public class DrawableDragDropActivity extends Activity
 {
@@ -18,26 +16,7 @@ public class DrawableDragDropActivity extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_dragndrop_bluesky);
 
-		this.dragAndDropCollisionLstnr = getSunInSkyCollisionListener();
+		dragAndDropCollisionLstnr = DragAndDropTemplate.getSunInSkyCollisionListener(this);
 	}
 
-	private DragAndDropCollisionListener getSunInSkyCollisionListener() {
-
-		WindowManager windowManager = getWindowManager();
-
-		int id_containerViewGroup = R.id.my_sky_layout;
-		int id_dragItemImageView  = R.id.sun;
-
-		ViewGroup dragAreaViewGroup = (ViewGroup) findViewById(id_containerViewGroup);
-
-		View dragItemImgView = findViewById(id_dragItemImageView);
-		View targetImageView = findViewById(R.id.target);
-
-		DragAndDropCollisionListener dragAndDropCollisionLstnr =
-				new DragAndDropCollisionListener(windowManager, targetImageView);
-
-		dragAndDropCollisionLstnr.setDragDrop(dragAreaViewGroup, dragItemImgView);
-
-		return dragAndDropCollisionLstnr;
-	}
 }
