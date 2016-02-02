@@ -14,10 +14,14 @@ public class DrawableDragDropActivity extends Activity
 	DragAndDropCollisionListener dragAndDropCollisionLstnr;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState)
-	{
+	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_dragndrop_bluesky);
+
+		this.dragAndDropCollisionLstnr = getSunInSkyCollisionListener();
+	}
+
+	private DragAndDropCollisionListener getSunInSkyCollisionListener() {
 
 		WindowManager windowManager = getWindowManager();
 
@@ -29,9 +33,11 @@ public class DrawableDragDropActivity extends Activity
 		View dragItemImgView = findViewById(id_dragItemImageView);
 		View targetImageView = findViewById(R.id.target);
 
-		dragAndDropCollisionLstnr =
+		DragAndDropCollisionListener dragAndDropCollisionLstnr =
 				new DragAndDropCollisionListener(windowManager, targetImageView);
 
 		dragAndDropCollisionLstnr.setDragDrop(dragAreaViewGroup, dragItemImgView);
+
+		return dragAndDropCollisionLstnr;
 	}
 }
