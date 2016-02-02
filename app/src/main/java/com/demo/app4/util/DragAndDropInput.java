@@ -6,10 +6,9 @@ import android.view.WindowManager;
 
 public class DragAndDropInput {
 
-
-    WindowManager windowManager;
-    ViewGroup dragAreaViewGroup;
-    View dragItemImgView;
-    View targetImageView;
+    public WindowManager windowManager;
+    public ViewGroup dragAreaViewGroup;
+    public View dragItemImgView;
+    public View targetImageView;
 
 }
