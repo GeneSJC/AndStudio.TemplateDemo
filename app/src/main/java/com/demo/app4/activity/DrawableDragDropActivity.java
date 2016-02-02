@@ -2,6 +2,7 @@ package com.demo.app4.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
 
 import com.demo.app4.R;
 import com.demo.app4.util.DragAndDropCollisionListener;
@@ -18,10 +19,11 @@ public class DrawableDragDropActivity extends Activity
 
 		int id_containerViewGroup = R.id.my_sky_layout;
 		int id_dragItemImageView  = R.id.sun;
-		int id_targetView  		  = R.id.target;
+
+		View targetImageView = findViewById(R.id.target);
 
 		dragAndDropCollisionListener =
-				new DragAndDropCollisionListener(this, id_targetView);
+				new DragAndDropCollisionListener(this, targetImageView);
 
 		dragAndDropCollisionListener
 				.setDragDrop(id_containerViewGroup,

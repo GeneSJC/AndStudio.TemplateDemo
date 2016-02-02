@@ -13,11 +13,11 @@ public class DragAndDropCollisionListener extends DragAndDropListenerLogic {
 	// For collision detection
 	private View targetImageView;	// target to watch for intersect from dragItem
 
-	public DragAndDropCollisionListener(Activity activity, int id_targetView) {
+	public DragAndDropCollisionListener(Activity activity, View targetImageView) {
 
 		super(activity);
 
-		targetImageView = activity.findViewById(R.id.target);
+		this.targetImageView = targetImageView;
 	}
 
 	public void onMove(MotionEvent event) {
