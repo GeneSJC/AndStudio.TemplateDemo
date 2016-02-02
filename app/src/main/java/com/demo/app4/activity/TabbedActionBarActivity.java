@@ -13,11 +13,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.demo.app4.R;
+import com.demo.app4.util.DragAndDropCollisionListener;
+import com.demo.app4.util.DragAndDropInput;
+import com.demo.app4.util.DragAndDropTemplate;
 
 public class TabbedActionBarActivity extends AppCompatActivity {
 
@@ -38,6 +42,7 @@ public class TabbedActionBarActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tabbed_action_bar);
 
@@ -51,17 +56,26 @@ public class TabbedActionBarActivity extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
+        mViewPager.setOnTouchListener(new View.OnTouchListener()
+        {
+            @Override
+            public boolean onTouch(View v, MotionEvent event)
+            {
+                return true;
+            }
+        });
+
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        //    FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        //    fab.setOnClickListener(new View.OnClickListener() {
+        //        @Override
+        //        public void onClick(View view) {
+        //            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+        //                    .setAction("Action", null).show();
+        //        }
+        //    });
 
     }
 
@@ -98,7 +112,12 @@ public class TabbedActionBarActivity extends AppCompatActivity {
          */
         private static final String ARG_SECTION_NUMBER = "section_number";
 
+        private DragAndDropCollisionListener dragAndDropCollisionLstnr;
+
+        private int sectionNumber;
+
         public PlaceholderFragment() {
+
         }
 
         /**
@@ -106,7 +125,11 @@ public class TabbedActionBarActivity extends AppCompatActivity {
          * number.
          */
         public static PlaceholderFragment newInstance(int sectionNumber) {
+
             PlaceholderFragment fragment = new PlaceholderFragment();
+
+            fragment.sectionNumber = sectionNumber;
+
             Bundle args = new Bundle();
             args.putInt(ARG_SECTION_NUMBER, sectionNumber);
             fragment.setArguments(args);
@@ -114,11 +137,33 @@ public class TabbedActionBarActivity extends AppCompatActivity {
         }
 
         @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+        public View onCreateView(LayoutInflater inflater,
+                                 ViewGroup container,
                                  Bundle savedInstanceState) {
+
+            if (this.sectionNumber == 2) {
+
+                View rootView = getDndView(inflater, container);
+                return rootView;
+            }
+
             View rootView = inflater.inflate(R.layout.fragment_tabbed_action_bar, container, false);
             TextView textView = (TextView) rootView.findViewById(R.id.section_label);
             textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+            return rootView;
+        }
+
+        public View getDndView(LayoutInflater inflater, ViewGroup container) {
+
+            View rootView = inflater.inflate(R.layout.activity_dragndrop_bluesky, container, false);
+
+            //    if (dragAndDropCollisionLstnr == null) {
+            //    }
+
+            // reset every time we get the view
+            DragAndDropInput dndInput = DragAndDropTemplate.getDragAndDropInput(rootView, this);
+            dragAndDropCollisionLstnr = DragAndDropTemplate.getSunInSkyCollisionListener(dndInput);
+
             return rootView;
         }
     }
@@ -148,18 +193,20 @@ public class TabbedActionBarActivity extends AppCompatActivity {
 
         @Override
         public CharSequence getPageTitle(int position) {
+
             switch (position) {
                 case 0:
-                    return "SECTION 100";
+                    return "Page 1";
                 case 1:
-                    return "SECTION 2";
+                    return "Page 2";
                 case 2:
-                    return "SECTION 3";
+                    return "Page 3";
                 case 3:
-                    return "SECTION 40";
+                    return "Page 4";
                 case 4:
-                    return "SECTION 50";
+                    return "Page 5";
             }
+
             return null;
         }
     }
