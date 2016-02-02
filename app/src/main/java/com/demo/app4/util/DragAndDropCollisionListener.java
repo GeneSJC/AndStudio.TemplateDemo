@@ -1,13 +1,10 @@
 package com.demo.app4.util;
 
-import android.app.Activity;
 import android.graphics.Rect;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
-
-import com.demo.app4.R;
 
 public class DragAndDropCollisionListener extends DragAndDropListenerLogic {
 
@@ -28,7 +25,7 @@ public class DragAndDropCollisionListener extends DragAndDropListenerLogic {
 		Log.d("dbg", msg);
 	}
 
-	private boolean isCollision () {
+	protected boolean isCollision () {
 
 		boolean isCollision = false;
 
