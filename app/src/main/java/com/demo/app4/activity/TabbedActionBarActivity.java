@@ -1,8 +1,6 @@
 package com.demo.app4.activity;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -19,9 +17,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.demo.app4.R;
-import com.demo.app4.util.DragAndDropCollisionListener;
 import com.demo.app4.util.DragAndDropInput;
 import com.demo.app4.util.DragAndDropTemplate;
+import com.demo.app4.util.StoryBookCollisionListener;
 
 public class TabbedActionBarActivity extends AppCompatActivity {
 
@@ -37,8 +35,10 @@ public class TabbedActionBarActivity extends AppCompatActivity {
 
     /**
      * The {@link ViewPager} that will host the section contents.
+     *
+     * Making static so it can be passed to StoryBookCollisionListener
      */
-    private ViewPager mViewPager;
+    static private ViewPager mViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,7 +112,7 @@ public class TabbedActionBarActivity extends AppCompatActivity {
          */
         private static final String ARG_SECTION_NUMBER = "section_number";
 
-        private DragAndDropCollisionListener dragAndDropCollisionLstnr;
+        private StoryBookCollisionListener storybookCollisionLstnr;
 
         private int sectionNumber;
 
@@ -157,12 +157,21 @@ public class TabbedActionBarActivity extends AppCompatActivity {
 
             View rootView = inflater.inflate(R.layout.activity_dragndrop_bluesky, container, false);
 
-            //    if (dragAndDropCollisionLstnr == null) {
+            //    if (storybookCollisionLstnr == null) {
             //    }
 
             // reset every time we get the view
             DragAndDropInput dndInput = DragAndDropTemplate.getDragAndDropInput(rootView, this);
-            dragAndDropCollisionLstnr = DragAndDropTemplate.getSunInSkyCollisionListener(dndInput);
+
+            storybookCollisionLstnr = new StoryBookCollisionListener(dndInput.windowManager, dndInput.targetImageView);
+
+            storybookCollisionLstnr.setDragDrop(dndInput.dragAreaViewGroup, dndInput.dragItemImgView);
+
+            storybookCollisionLstnr.setViewPager(mViewPager, this.sectionNumber);
+
+            storybookCollisionLstnr.setActivity(getActivity());
+
+            getActivity().setTitle("Story Book Page");
 
             return rootView;
         }
