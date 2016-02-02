@@ -5,6 +5,7 @@ import android.graphics.Rect;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 
 import com.demo.app4.R;
 
@@ -13,9 +14,9 @@ public class DragAndDropCollisionListener extends DragAndDropListenerLogic {
 	// For collision detection
 	private View targetImageView;	// target to watch for intersect from dragItem
 
-	public DragAndDropCollisionListener(Activity activity, View targetImageView) {
+	public DragAndDropCollisionListener(WindowManager windowManager, View targetImageView) {
 
-		super(activity);
+		super(windowManager);
 
 		this.targetImageView = targetImageView;
 	}

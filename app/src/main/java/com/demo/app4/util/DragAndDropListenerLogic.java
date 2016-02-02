@@ -4,13 +4,13 @@ import android.app.Activity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 abstract public class DragAndDropListenerLogic implements OnMoveHandler {
 
-	// For resources access
-	protected Activity activity;
+	private WindowManager windowManager;
 
 	// DragAndDrop vars
 	private View selected_item = null;
@@ -20,35 +20,33 @@ abstract public class DragAndDropListenerLogic implements OnMoveHandler {
 	// item being dragged
 	protected View dragItemImageView;
 
-	public DragAndDropListenerLogic(Activity activity) {
+	public DragAndDropListenerLogic(WindowManager windowManager) {
 
 		super();
-		this.activity = activity;
+		this.windowManager = windowManager;
 	}
 
 	/**
 	 * Must set dragItem and the parent ViewGroup
 	 *
-	 * @param containerViewGroup that contains the item to drag
-	 * @param id_dragItemImageView id for item to drag
+	 * @param dragAreaViewGroup that contains the item to drag
+	 * @param dragItemImageView item to drag
 	 */
-	public void setDragDrop(int containerViewGroup, int id_dragItemImageView) {
+	public void setDragDrop(ViewGroup dragAreaViewGroup, View dragItemImageView) {
 
-		setDragDropViewGroup(containerViewGroup);
+		this.dragItemImageView = dragItemImageView;
 
-		setDragItemImageView(id_dragItemImageView);
+		setDragDropViewGroup(dragAreaViewGroup);
+
+		setDragItemActionDownListener();
 	}
 
 	/**
-	 * Instantiates instance member dragItem
-	 * and adds to it an ACTION_DOWN listener
+	 * Adds to instance member dragItem an ACTION_DOWN listener
 	 *
-	 * @param id_dragItemImageView
 	 */
-	private void setDragItemImageView(int id_dragItemImageView)
+	private void setDragItemActionDownListener()
 	{
-		dragItemImageView = (ImageView) activity.findViewById(id_dragItemImageView);
-
 		dragItemImageView.setOnTouchListener(new View.OnTouchListener() {
 
 			@Override
@@ -77,11 +75,9 @@ abstract public class DragAndDropListenerLogic implements OnMoveHandler {
 	 * Instantiates instance drag area view group
 	 * and adds to it an ACTION_MOVE listener
 	 *
-	 * @param viewGroup
+	 * @param vg
 	 */
-	private void setDragDropViewGroup(int viewGroup) {
-
-		ViewGroup vg = (ViewGroup) activity.findViewById(viewGroup);
+	private void setDragDropViewGroup(ViewGroup vg) {
 
 		vg.setOnTouchListener(new View.OnTouchListener() {
 			@Override
@@ -119,8 +115,8 @@ abstract public class DragAndDropListenerLogic implements OnMoveHandler {
 		int dragItem_leftMargin_X = (int) event.getX() - offset_x;
 		int dragItem_topMargin_Y = (int) event.getY() - offset_y;
 
-		int w = activity.getWindowManager().getDefaultDisplay().getWidth() - 100;
-		int h = activity.getWindowManager().getDefaultDisplay().getHeight() - 100;
+		int w = windowManager.getDefaultDisplay().getWidth() - 100;
+		int h = windowManager.getDefaultDisplay().getHeight() - 100;
 
 		if (dragItem_leftMargin_X > w)
 			dragItem_leftMargin_X = w;
