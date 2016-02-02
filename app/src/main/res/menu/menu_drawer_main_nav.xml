@@ -14,18 +14,25 @@
             android:title="~Fullscreen"/>
 
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import"/>
+            android:id="@+id/nav_tabbedactionbar"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Tabbed Action Bar"/>
 
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools"/>
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="Pending Impl.">
         <menu>
+
+            <item
+                android:id="@+id/nav_camera"
+                android:icon="@drawable/ic_menu_camera"
+                android:title="Import"/>
+
+            <item
+                android:id="@+id/nav_manage"
+                android:icon="@drawable/ic_menu_manage"
+                android:title="Tools"/>
+
             <item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"

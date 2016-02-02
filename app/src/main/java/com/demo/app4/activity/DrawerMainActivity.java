@@ -58,7 +58,7 @@ public class DrawerMainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.drawer_main, menu);
+        getMenuInflater().inflate(R.menu.menu_drawer_main_settings, menu);
         return true;
     }
 
@@ -94,12 +94,16 @@ public class DrawerMainActivity extends AppCompatActivity
         if (id == R.id.nav_fullscreen) {
 
             intent = new Intent(this, FullscreenActivity.class);
-
         }
         else if (id == R.id.nav_drawabledragdrop) {
 
             intent = new Intent(this, DrawableDragDropActivity.class);
         }
+        else if (id == R.id.nav_tabbedactionbar) {
+
+            intent = new Intent(this, TabbedActionBarActivity.class);
+        }
+
 
 //        if (id == R.id.nav_camera) {
 //
