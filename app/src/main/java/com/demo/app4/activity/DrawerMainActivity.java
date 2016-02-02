@@ -91,6 +91,16 @@ public class DrawerMainActivity extends AppCompatActivity
 
         Intent intent = null;
 
+        if (id == R.id.nav_fullscreen) {
+
+            intent = new Intent(this, FullscreenActivity.class);
+
+        }
+        else if (id == R.id.nav_drawabledragdrop) {
+
+            intent = new Intent(this, DrawableDragDropActivity.class);
+        }
+
 //        if (id == R.id.nav_camera) {
 //
 //            // Handle the camera action
@@ -114,11 +124,7 @@ public class DrawerMainActivity extends AppCompatActivity
 //
 //            intent = new Intent(this, ItemListActivity.class);
 //
-//        } else if (id == R.id.nav_send) {
-//
-//            intent = new Intent(this, DrawableDragDropActivity.class);
-//
-//        } else if (id == R.id.nav_map) {
+//        } else  else if (id == R.id.nav_map) {
 //
 //            intent = new Intent(this, MapsActivity.class);
 //        }
