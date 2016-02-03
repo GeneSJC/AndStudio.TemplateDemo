@@ -44,7 +44,7 @@ public class StoryBookCollisionListener extends DragAndDropCollisionListener {
 
 			alertDialog = new AlertDialog.Builder(activity).create();
 			alertDialog.setTitle("You Win!");
-			alertDialog.setMessage("Great job, you found the orange square. Advance to next page.");
+			alertDialog.setMessage("Great job, you found the Barn House. Advance to next page.");
 			alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
 					new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog, int which) {

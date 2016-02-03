@@ -1,10 +1,9 @@
 package com.demo.app4.activity;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
-import android.content.res.Configuration;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 
 import com.demo.app4.R;
@@ -24,6 +23,33 @@ public class StoryBookActivity extends AppCompatActivity {
         StoryBookActivity.SELF_STATIC_REF = this;
 
         goToNextPage();
+
+        showInstructionsDialog();
+    }
+
+    private void showInstructionsDialog() {
+
+        String msg = "";
+
+        msg += "Once upon a time there was a big bright sun in the blue sky. \n\n";
+        msg += "The Barn House (the orange square) below wanted to enjoy the sun's warmth. \n\n";
+        msg += "Can you find the sun and bring it over to the barn? \n\n";
+        msg += "Touch the sun and drag to the orange square, to advance to next page.";
+
+        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+        alertDialog.setTitle("Interactive Story Book Demo - Page 1");
+        alertDialog.setMessage(msg);
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK, Let's Start",
+
+                new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        dialog.dismiss();
+                    }
+                });
+
+        alertDialog.show();
     }
 
     public static void goToNextPage() {
