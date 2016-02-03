@@ -23,38 +23,14 @@ public class StoryBookActivity extends AppCompatActivity {
 
         StoryBookActivity.SELF_STATIC_REF = this;
 
-        Configuration config = getResources().getConfiguration();
-
-        FragmentManager fragmentManager = getFragmentManager();
-
-        FragmentTransaction fragmentTransaction =
-                fragmentManager.beginTransaction();
-
-        Fragment fragment = null;
-
-        /**
-         * Check the device orientation and act accordingly
-         */
-        if (config.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            /**
-             * Landscape mode of the device
-             */
-            fragment = StoryBookFragment.newInstance(1);
-        }
-        else
-        {
-            /**
-             * Portrait mode of the device
-             */
-            fragment = StoryBookFragment.newInstance(2);
-        }
-
-        updateFragment(fragment);
+        goToNextPage();
     }
 
     public static void goToNextPage() {
 
+        Fragment fragment = StoryBookFragment.newInstance();
 
+        StoryBookActivity.SELF_STATIC_REF.updateFragment(fragment);
     }
 
     protected void updateFragment(Fragment fragment)

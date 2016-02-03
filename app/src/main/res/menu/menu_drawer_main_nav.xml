@@ -4,26 +4,39 @@
     <group android:checkableBehavior="single">
 
         <item
-            android:id="@+id/nav_fullscreen"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="~Fullscreen"/>
-
-        <item
-            android:id="@+id/nav_drawabledragdrop"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="~DrawableDragDrop"/>
-
-        <item
-            android:id="@+id/nav_tabbedactionbar"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Tabbed Action Bar"/>
-
-        <item
             android:id="@+id/nav_storybook"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Story Book"/>
 
     </group>
+
+    <item android:title="Misc. Demos">
+        <menu>
+
+            <item
+                android:id="@+id/nav_fullscreen"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="~Fullscreen"/>
+
+            <item
+                android:id="@+id/nav_drawabledragdrop"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="~DrawableDragDrop"/>
+
+        </menu>
+    </item>
+
+
+    <item android:title="Partial Impl.">
+        <menu>
+
+            <item
+                android:id="@+id/nav_tabbedactionbar"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="Tabbed Action Bar"/>
+
+        </menu>
+    </item>
 
     <item android:title="Pending Impl.">
         <menu>
