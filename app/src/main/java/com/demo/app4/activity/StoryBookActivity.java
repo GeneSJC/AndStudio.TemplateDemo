@@ -8,17 +8,20 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 
 import com.demo.app4.R;
-import com.demo.app4.fragment.LM_Fragment;
-import com.demo.app4.fragment.PM_Fragment;
+import com.demo.app4.fragment.StoryBookFragment;
 
 
 public class StoryBookActivity extends AppCompatActivity {
+
+    private static StoryBookActivity SELF_STATIC_REF;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_storybook);
+
+        StoryBookActivity.SELF_STATIC_REF = this;
 
         Configuration config = getResources().getConfiguration();
 
@@ -36,19 +39,23 @@ public class StoryBookActivity extends AppCompatActivity {
             /**
              * Landscape mode of the device
              */
-            fragment = new LM_Fragment();
+            fragment = StoryBookFragment.newInstance(1);
         }
         else
         {
             /**
              * Portrait mode of the device
              */
-            fragment = new PM_Fragment();
+            fragment = StoryBookFragment.newInstance(2);
         }
 
         updateFragment(fragment);
     }
 
+    public static void goToNextPage() {
+
+
+    }
 
     protected void updateFragment(Fragment fragment)
     {

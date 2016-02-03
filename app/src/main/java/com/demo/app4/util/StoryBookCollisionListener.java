@@ -9,30 +9,24 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 
+import com.demo.app4.activity.StoryBookActivity;
+
 public class StoryBookCollisionListener extends DragAndDropCollisionListener {
 
 	private Activity activity;
 
-	private ViewPager mViewPager;
-
-	private int nextPageIdx;
-
 	private AlertDialog alertDialog;
+
+	public StoryBookCollisionListener(Activity activity, View targetImageView) {
+
+		super(activity.getWindowManager(), targetImageView);
+
+		this.activity = activity;
+	}
 
 	public StoryBookCollisionListener(WindowManager windowManager, View targetImageView) {
 
 		super(windowManager, targetImageView);
-	}
-
-	public void setViewPager(ViewPager mViewPager, int curSectionNumber) {
-
-		this.mViewPager	 = mViewPager;
-		this.nextPageIdx = curSectionNumber;  // sectionNumber always +1 current item
-	}
-
-	public void setActivity(Activity activity) {
-
-		this.activity = activity;
 	}
 
 	public void onMove(MotionEvent event) {
@@ -55,8 +49,8 @@ public class StoryBookCollisionListener extends DragAndDropCollisionListener {
 					new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog, int which) {
 
-							// mViewPager.setCurrentItem(nextPageIdx);
-							mViewPager.setCurrentItem(nextPageIdx, true);
+							StoryBookActivity.goToNextPage();
+
 							dialog.dismiss();
 
 							alertDialog = null;
@@ -67,5 +61,24 @@ public class StoryBookCollisionListener extends DragAndDropCollisionListener {
 		}
 	}
 
+
+
+
+	//	private ViewPager mViewPager;
+	//	private int nextPageIdx;
+
+
+	@Deprecated
+	public void setViewPager(ViewPager mViewPager, int curSectionNumber) {
+
+		//		this.mViewPager	 = mViewPager;
+		//		this.nextPageIdx = curSectionNumber;  // sectionNumber always +1 current item
+	}
+
+	@Deprecated
+	public void setActivity(Activity activity) {
+
+		// this.storyBookActivity = storyBookActivity;
+	}
 
 }
