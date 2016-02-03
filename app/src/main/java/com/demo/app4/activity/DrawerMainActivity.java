@@ -103,6 +103,24 @@ public class DrawerMainActivity extends AppCompatActivity
 
             intent = new Intent(this, TabbedActionBarActivity.class);
         }
+        else if (id == R.id.nav_storybook) {
+
+            intent = new Intent(this, StoryBookActivity.class);
+        }
+
+        if (intent != null) {
+
+            startActivity(intent);
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+}
+
+
+
 
 
 //        if (id == R.id.nav_camera) {
@@ -132,14 +150,3 @@ public class DrawerMainActivity extends AppCompatActivity
 //
 //            intent = new Intent(this, MapsActivity.class);
 //        }
-
-        if (intent != null) {
-
-            startActivity(intent);
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
-}

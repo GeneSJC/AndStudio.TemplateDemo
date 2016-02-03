@@ -23,6 +23,10 @@
             android:label="@string/title_activity_settings">
         </activity>
         <activity
+            android:name=".activity.StoryBookActivity"
+            android:label="Story Book">
+        </activity>
+        <activity
             android:name=".activity.DrawableDragDropActivity"
             android:label="DrawableDragDropActivity">
         </activity>
